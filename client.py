@@ -5,7 +5,7 @@ import sys
 import socket
 
 
-def server(msg,port_curr):
+def server(msg , port_curr):
     try:
         ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[S]: Server socket created")
@@ -24,8 +24,10 @@ def server(msg,port_curr):
     print ("[S]: Got a connection request from a client at {}".format(addr))
 
     # send a intro message to the client.
-    csockid.send(msg.encode('utf-8'))
-
+    #print(msg)
+    #msg="welcome"
+    csockid.send(msg.encode('utf-8'))    #this place must have problem
+    #print(msg)
     # Close the server socket
     ss.close()
     exit()
@@ -62,18 +64,25 @@ if __name__ == "__main__":
     file = open(path_name)
     file2 = open('RESOLVED.txt','w')
     while 1:
-        lines = file.readlines(1000)
+        lines = file.readlines()
+        #print(lines[2])
         if not lines:
             break
+        #print(lines[2])
         for line in lines:
-            server(line,rsListenPort)
-            time.sleep(random.random() * 5)
-            str=client(rsListenPort)
-            x=str.split(" - ")
-            if x[1] == 'NS':
-                time.sleep(5)
+            #print(line)
+            server(line,rsListenPort)   
+            #print(line)
+            str=client(rsListenPort+150)
+            #print(line)
+            x = str[-2:]
+            #print(line)
+            #print(x)
+            if x == 'NS':
+                #print(x[1])
                 server(str,tsListenPort)
                 str=client(tsListenPort)
                 file2.write(str)
             else:
+                #print("!")
                 file2.write(str)

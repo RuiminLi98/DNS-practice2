@@ -24,7 +24,7 @@ def server(msg , port_curr):
 
     # send a intro message to the client.
     csockid.send(msg.encode('utf-8'))
-
+    #print(msg.encode('utf-8'))
     # Close the server socket
     ss.close()
     exit()
@@ -56,4 +56,28 @@ def client(port_curr):
 if __name__ == "__main__":
     rsListenPort = int(sys.argv[1])
     str = client(rsListenPort)
-    print(str)
+    path_name2 = "PROJI-HNS.txt"
+    file2 = open(path_name2)
+    temp = 0
+    while 1:
+        lines = file2.readlines()
+        if not lines:
+            break
+        temp = temp + 1
+
+    #print(temp)
+    path_name = "PROJI-DNSRS.txt"
+    file = open(path_name)
+    for i in range(0 , temp):
+        while 1:
+            lines = file.readlines()
+            if not lines:
+                break
+            for line in lines:
+                x=line.split(" ")
+                #print(line)
+                #print(x[0])
+                #print(str)
+                #print("!")
+                if x[0].strip() == str.strip():
+                    server(line,rsListenPort+150)
