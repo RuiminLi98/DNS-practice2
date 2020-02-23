@@ -1,0 +1,6 @@
+0. Ruimin Li rl751
+   Weihong Chen wc470
+1. Firstly, rs server connect to client, client give data to rs server line by line, then rs server deal with these data and return the result to the client. Next, ts server connect to client, client send these URL which still not found to ts, ts search these URL in its database line by line and return result to client 
+2. No, we figure out all the question.
+3. When I try to divide the string on the txt, the "\n" at the end of the string is hard to eliminate, in the end, I know strip can doing this. Second, about the case, in order not to affect the searching result, we transfer all the URL to lower case.
+4. I learned the lots of function based on "socket" on python.
